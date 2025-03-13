@@ -112,3 +112,102 @@ for (var i = 0; i < particleCount; i++) {
 
 // Iniciar la animación
 drawParticles();
+hackerBinari();
+
+
+function hackerBinari() {
+    initMatrix('matrix');
+
+}
+
+function initMatrix(containerId, options = {}) {
+    const {
+        columnWidth = 46,
+        animationSpeed = 500,
+        changeCharProbability = 0.1,
+        minLength = 15,
+        maxLength = 30,
+        minSpeed = 0.2,
+        maxSpeed = 0.5
+    } = options;
+
+    const container = document.getElementById(containerId);
+    let columns = [];
+
+    // Función para crear o actualizar las columnas
+    function createOrUpdateColumns() {
+        const width = container.offsetWidth;
+        const newColumnsCount = Math.floor(width / columnWidth);
+
+        // Si el número de columnas no ha cambiado, no hacemos nada
+        if (newColumnsCount === columns.length) return;
+
+        // Limpiamos el contenedor
+        container.innerHTML = '';
+
+        // Creamos las nuevas columnas
+        columns = [];
+        for (let i = 0; i < newColumnsCount; i++) {
+            const column = document.createElement('div');
+            column.className = 'matrix';
+            column.style.width = columnWidth + 'px';
+            column.style.left = (i * columnWidth) + 'px';
+            column.style.position = 'absolute';
+            container.appendChild(column);
+
+            let delay = Math.random() * 2;
+            animateColumn(column, delay, {
+                animationSpeed,
+                changeCharProbability,
+                minLength,
+                maxLength,
+                minSpeed,
+                maxSpeed
+            });
+
+            columns.push(column);
+        }
+    }
+
+    // Crear columnas iniciales
+    createOrUpdateColumns();
+
+    // Escuchar cambios en el tamaño de la ventana
+    window.addEventListener('resize', createOrUpdateColumns);
+}
+
+function animateColumn(column, delay, options) {
+    const {
+        animationSpeed,
+        changeCharProbability,
+        minLength,
+        maxLength,
+        minSpeed,
+        maxSpeed
+    } = options;
+
+    let length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+    let chars = [];
+    let speeds = [];
+
+    for (let i = 0; i < length; i++) {
+        chars.push(Math.random() < 0.5 ? '0' : '1');
+        speeds.push(Math.random() * (maxSpeed - minSpeed) + minSpeed);
+    }
+
+    setTimeout(() => {
+        setInterval(() => {
+            let html = '';
+            for (let i = 0; i < length; i++) {
+                const char = chars[i];
+                const opacity = Math.max(0, 1 - (i / length));
+                html = `<span style="opacity: ${opacity}; color: ${colorChange};">${char}</span><br>` + html;
+
+                if (Math.random() < changeCharProbability) {
+                    chars[i] = Math.random() < 0.5 ? '0' : '1';
+                }
+            }
+            column.innerHTML = html;
+        }, animationSpeed);
+    }, delay * 1000);
+}

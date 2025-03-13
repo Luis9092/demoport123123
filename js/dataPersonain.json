@@ -132,9 +132,9 @@
   "Habilidades": [
     {
       "titulo": "Hacker Skills",
-      "subtitulo": "my skills are",
-      "tituloParte1": "skills",
-      "tituloParte2": "competencies",
+      "subtitulo": "My skills are",
+      "tituloParte1": "Skills",
+      "tituloParte2": "Competencies",
       "habilidades": [
         {
           "id": 1,
@@ -164,7 +164,7 @@
       ],
       "Competencias": [
         {
-          "nombre": "native spanish",
+          "nombre": "Native Spanish",
           "porcentaje": 100
         },
         {
@@ -172,11 +172,11 @@
           "porcentaje": 30
         },
         {
-          "nombre": "self-taught",
+          "nombre": "Self-taught",
           "porcentaje": 50
         },
         {
-          "nombre": "creative",
+          "nombre": "Creative",
           "porcentaje": 80
         }
       ]
@@ -191,14 +191,15 @@
           "id": 1,
           "nombre": "Static Analysis, Android",
           "fecha": "17/11/2023",
-          "pathImagen": "imagenJobs/git1.jpg",
+          "pathImagen": "imagenJobs/jobs1.jpg",
+
           "link": "https://engelberth90.github.io/Analisis-Estatido-Android/#"
         },
         {
           "id": 1,
           "nombre": "Mobile Audit Setup",
           "fecha": "03/11/2023",
-          "pathImagen": "imagenJobs/git2.png",
+          "pathImagen": "imagenJobs/jobs2.jpg",
           "link": "https://engelberth90.github.io/Configuraci%C3%B3n-para-auditorias-mobiles/"
         }
       ]

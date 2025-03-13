@@ -37,38 +37,37 @@ async function cargarData() {
     }
 
     const inicio = await leerArchivojson(nombre);
-    crearMenu(inicio.menu);
-    SaludoUsuario(inicio, inicio.perfilPersona[0].nombre);
-    HabilidadesInicio(inicio.habilidadesinicio);
-    mostrarDescripcion(inicio.perfilPersona);
-    sobreMi(inicio.sobreMi[0].titulo, inicio.sobreMi[0].subtitulo, inicio.sobreMi[0].parrafo1, inicio.sobreMi[0].parrafo2);
-    ModuloCertificaciones(inicio.certificaciones);
-    ModuloHabilidades(inicio.Habilidades);
-    ModuloProyectos(inicio.Trabajo);
-    ModuloContacto(inicio.Contacto);
+    await crearMenu(inicio.menu);
+    await SaludoUsuario(inicio, inicio.perfilPersona[0].nombre);
+    await HabilidadesInicio(inicio.habilidadesinicio);
+    await mostrarDescripcion(inicio.perfilPersona);
+    await sobreMi(inicio.sobreMi[0].titulo, inicio.sobreMi[0].subtitulo, inicio.sobreMi[0].parrafo1, inicio.sobreMi[0].parrafo2);
+    await ModuloCertificaciones(inicio.certificaciones);
+    await ModuloHabilidades(inicio.Habilidades);
+    await ModuloProyectos(inicio.Trabajo);
+    await ModuloContacto(inicio.Contacto);
 
 }
 
 
-function cambiarIdioma() {
+ function cambiarIdioma() {
     cargarData();
     cambiar.addEventListener("click", (e) => {
         cambiar.value = cambiar.value == "0" ? "1" : "0";
         idiomaglobal = idiomaglobal == "0" ? "1" : "0";
         cambiar.innerHTML = cambiar.value == "0" ? `<img
               class="containerImagenlogo"
-              src="/img/traducir.png"
+              src="img/translate.png"
             />
             Inglish` : `<img
               class="containerImagenlogo"
-              src="/img/traducir.png"
+              src="img/translate.png"
             />
             Español`;
         cargarData();
 
     });
 }
-cambiarIdioma();
 
 function cambiarComponentesboton() {
     const btnTargetcambiar = document.querySelectorAll("#btnTarget1");
@@ -102,7 +101,7 @@ async function leerArchivojson(nombreArchivo) {
     }
 }
 
-function HabilidadesInicio(habilidades) {
+async function HabilidadesInicio(habilidades) {
     let cadena = "";
     habilidades.forEach((element) => {
         cadena += `<span class="word">${element.titulo}</span>`;
@@ -162,7 +161,7 @@ function animacionHabilidades() {
 
 
 
-function crearMenu(menu) {
+async function crearMenu(menu) {
     let cadena = "";
     txtcrearMenu.innerHTML = "";
     let opcionesAdiconales = `<li>
@@ -195,8 +194,7 @@ function crearMenu(menu) {
     paletaColores()
 }
 
-function mostrarDescripcion(modulouno) {
-    // [0].descripcion, inicio.perfilPersona[0].tituloBoton
+async function mostrarDescripcion(modulouno) {
     txtDescripcion.innerHTML = modulouno[0].descripcion;
     btncv.href = modulouno[0].linkcv;
     btncv.innerHTML = modulouno[0].tituloBoton;
@@ -281,7 +279,7 @@ function paletaColores() {
 
 // renderizarData();
 
-function SaludoUsuario(saludar, nombre) {
+async function SaludoUsuario(saludar, nombre) {
     let hora = obtenerHoraActual();
     let cadena = "";
     if (hora < 12) {
@@ -298,7 +296,7 @@ function SaludoUsuario(saludar, nombre) {
     txth1.innerHTML = `<span id="txtSaludo">${cadena}</span> ${nombre}`;
 }
 
-function sobreMi(titulo, subtitulo, parrafo1, parrafo2) {
+async function   sobreMi(titulo, subtitulo, parrafo1, parrafo2) {
     tituloSobre.innerHTML = titulo;
     subtituloSobre.innerHTML = subtitulo;
     descripcionSobre.innerHTML = `${parrafo1} <br><br> ${parrafo2}`;
@@ -307,7 +305,7 @@ function sobreMi(titulo, subtitulo, parrafo1, parrafo2) {
 
 /// SECCION 3  ---CERTIFICACIONES
 
-function ModuloCertificaciones(modulo) {
+async function  ModuloCertificaciones(modulo) {
     titulocert.innerHTML = modulo[0].titulo;
     subtitulocert.innerHTML = modulo[0].subtitulo;
     subtitulocursos.innerHTML = modulo[0].cursostitulo;
@@ -464,7 +462,7 @@ const parteunohabilidades = document.querySelector("#parteunohabilidades");
 const partedoshabilidades = document.querySelector("#partedoshabilidades");
 
 
-function ModuloHabilidades(modulo) {
+async function ModuloHabilidades(modulo) {
 
     tituloskill.innerHTML = modulo[0].titulo;
     subtituloskill.innerHTML = modulo[0].subtitulo;
@@ -542,7 +540,7 @@ const subtitulojobs = document.querySelector("#subtitulojobs");
 const verJobs = document.querySelector("#verJobs");
 
 
-function ModuloProyectos(modulo) {
+async function ModuloProyectos(modulo) {
     titulojobs.innerHTML = modulo[0].titulo;
     subtitulojobs.innerHTML = modulo[0].subtitulo;
     pintandoProyectos(modulo[0].Proyectos);
@@ -607,7 +605,6 @@ const btnEnviarcorreo = document.querySelector("#btnEnviarcorreo");
 async function ModuloContacto(modulo) {
     titulocontacto.innerHTML = modulo[0].titulo;
     subtitulocontacto.innerHTML = modulo[0].subtitulo;
-    console.log(modulo[0].tag1);
     labelNombre.textContent = modulo[0].tag1;
     labelCorreo.innerHTML = modulo[0].tag2;
     labelMensaje.textContent = modulo[0].tag3;

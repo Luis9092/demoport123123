@@ -72,25 +72,25 @@
       "certificaciones": [
         {
           "id": 1,
-          "nombre": "Hacker ético profesional",
+          "nombre": "Professsional Ethical Hacker",
           "ruta": "certificaciones/cert1.jpg",
           "fecha": "27/07/2024"
         },
         {
           "id": 2,
-          "nombre": "Ingeniera de Pruebas de Penetración",
+          "nombre": "Penetration Testing Engineer",
           "ruta": "certificaciones/cert2.jpg",
           "fecha": "16/12/2024"
         },
         {
           "id": 3,
-          "nombre": "Tester de penetración de aplicaciones web ",
+          "nombre": "Web Application Penetration Tester Extreme",
           "ruta": "certificaciones/cert3.jpg",
           "fecha": "02/04/2024"
         },
         {
           "id": 4,
-          "nombre": "Probador práctico de penetración de redes",
+          "nombre": "Practical Network Penetration Tester",
           "ruta": "certificaciones/cert4.jpg",
           "fecha": "11/01/2025"
         }
